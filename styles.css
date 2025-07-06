@@ -191,6 +191,10 @@ article {
 }
 
 /* Testimonials Section */
+img.darkbg {
+    background-color: #1a1a1a;
+}
+
 .testimonials-section {
     background-color: #1a1a1a;
     padding: 80px 40px;
