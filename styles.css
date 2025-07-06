@@ -15,39 +15,140 @@ body {
 
 /* Header styles */
 header {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    overflow: hidden;
+}
+
+.hero-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 60px 40px;
     max-width: 1200px;
-    margin: 0 auto;
+    width: 100%;
+    padding: 0 40px;
     gap: 60px;
 }
 
+.hero-content {
+    flex: 1;
+    max-width: 600px;
+}
+
 .hero-content h1 {
-    font-size: 4rem;
+    font-size: 5rem;
     font-weight: 300;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     letter-spacing: -2px;
+    background: linear-gradient(135deg, #a4d65e, #8bc34a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: fadeInUp 1s ease-out;
 }
 
 .hero-content .subtitle {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: #cccccc;
     margin-bottom: 40px;
     font-weight: 300;
+    animation: fadeInUp 1s ease-out 0.3s both;
 }
-
 .hero-image {
     flex-shrink: 0;
+    animation: fadeInRight 1s ease-out 0.3s both;
 }
 
 .hero-image img {
-    width: 300px;
-    height: 400px;
+    width: 350px;
+    height: 450px;
     object-fit: cover;
     border-radius: 50px;
     border: 4px solid #333;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.hero-image img:hover {
+    transform: translateY(-10px);
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    color: #a4d65e;
+    animation: bounce 2s infinite;
+}
+
+.scroll-indicator span {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.scroll-arrow {
+    width: 2px;
+    height: 30px;
+    background: #a4d65e;
+    position: relative;
+}
+
+.scroll-arrow::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: -3px;
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 8px solid #a4d65e;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    40% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+    60% {
+        transform: translateX(-50%) translateY(-5px);
+    }
 }
 
 /* Main content sections */
@@ -237,14 +338,14 @@ img.darkbg {
 
 .company-logo {
     flex-shrink: 0;
-    width: 120px;
-    height: 80px;
+    width: 150px;
+    height: 100px;
     background: white;
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 15px;
+    padding: 12px;
 }
 
 .company-logo img {
@@ -280,6 +381,9 @@ img.darkbg {
     content: '"';
     color: #a4d65e;
     font-size: 2rem;
+    position: absolute;
+    right: -10px;
+    bottom: -15px;
 }
 
 .testimonial-content cite {
@@ -308,8 +412,8 @@ img.darkbg {
     }
     
     .company-logo {
-        width: 100px;
-        height: 60px;
+        width: 120px;
+        height: 72px;
         align-self: center;
     }
     
@@ -328,8 +432,8 @@ img.darkbg {
     }
     
     .company-logo {
-        width: 80px;
-        height: 50px;
+        width: 96px;
+        height: 60px;
     }
     
     .testimonial-content blockquote {
@@ -480,20 +584,24 @@ footer p {
 
 /* Responsive design */
 @media (max-width: 768px) {
-    header {
+    .hero-container {
         flex-direction: column;
         text-align: center;
         gap: 40px;
-        padding: 40px 20px;
+        padding: 0 20px;
     }
     
     .hero-content h1 {
-        font-size: 2.5rem;
+        font-size: 3rem;
+    }
+    
+    .hero-content .subtitle {
+        font-size: 1.4rem;
     }
     
     .hero-image img {
-        width: 250px;
-        height: 300px;
+        width: 280px;
+        height: 350px;
     }
     
     .with-left-circle,
@@ -519,13 +627,18 @@ footer p {
 
 @media (max-width: 480px) {
     .hero-content h1 {
-        font-size: 2rem;
+        font-size: 2.5rem;
     }
     
     .hero-content .subtitle {
         font-size: 1.2rem;
     }
     
+    .hero-image img {
+        width: 250px;
+        height: 300px;
+    }
+
     .brands-grid {
         grid-template-columns: 1fr;
     }
